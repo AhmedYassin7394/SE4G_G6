@@ -17,20 +17,21 @@
 	<meta property="og:type" content="article" />
 
     <!-- Website Title -->
-    <title> Solid Waste Management </title>
-    
+    <title> {% block title %}{% endblock %} -Solid Waste Management </title>
+    {% block stylesheet %}
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,600,700,700i&display=swap" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/fontawesome-all.css" rel="stylesheet">
-    <link href="css/swiper.css" rel="stylesheet">
-	<link href="css/magnific-popup.css" rel="stylesheet">
-	<link href="css/styles.css" rel="stylesheet">
-	
+    <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <link href="../static/css/fontawesome-all.css" rel="stylesheet">
+    <link href="../static/css/swiper.css" rel="stylesheet">
+	<link href="../static/css/magnific-popup.css" rel="stylesheet">
+	<link href="../static/css/styles.css" rel="stylesheet">
+	{% endblock %}
 	<!-- Favicon  -->
-    <link rel="icon" href="images/waste_icon.png">
+    <link rel="icon" href="../static/images/waste_icon.png">
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
+{% block body %}
     
     <!-- Preloader -->
 	<div class="spinner-wrapper">
@@ -57,14 +58,18 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav ml-auto">
+               <li class="nav-item">
+                {% if g.user %}
+                   <li><a href="/logout">Log Out</a></li>
+                 {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#register">REGISTER <span class="sr-only">(current)</span></a>
+                    <a class="nav-link page-scroll" href="/register">REGISTER </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="LOGIN.HTML">LOGIN<span class="sr-only">(current)</span></a>
+                    <a class="nav-link page-scroll" href="/LOGIN">LOGIN</a>
                
                 <li class="nav-item">
-                    <a class="nav-link page-scroll" href="#description">Map</a>
+                    <a class="nav-link page-scroll" href="/Map">Map</a>
                 </li>
 
                 <!-- Dropdown Menu -->          
@@ -104,19 +109,19 @@
                         
                         <!-- Slide -->
                         <div class="swiper-slide" >
-                            <img class="img-fluid" src="images/waste.jpg" alt="alternative">
+                            <img class="img-fluid" src="../static/images/waste1.jpg" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
                         <!-- Slide -->
                         <div class="swiper-slide">
-                            <img class="img-fluid" src="images/waste_3.jpg" alt="alternative">
+                            <img class="img-fluid" src="../static/images/waste2.jpg" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
                         <!-- Slide -->
                         <div class="swiper-slide">
-                            <img class="img-fluid" src="images/waste2.jpg" alt="alternative">
+                            <img class="img-fluid" src="../static/images/waste_3.jpg" alt="alternative">
                         </div>
                         <!-- end of slide -->
 
@@ -194,55 +199,35 @@
     <!-- end of registration -->
    <!--------------------->
     <!-- Description -->
-   <div id="description" class="basic-2">
+    <div id="description" class="basic-2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2>MAP</h2>
+                    <h2>What Will You Find In Our Website ?</h2>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
             <div class="row">
                 <div class="col-lg-6">
                     <ul class="list-unstyled li-space-lg first">
                         <li class="media">
-                            
+                            <i class="bullet">1</i>
                             <div class="media-body">
-                                <h4>
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                               HERE WE WILL PUT THE MAP 
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                 </h4>
+                                <h4>Location Of Dumping Areas </h4>
                                 <p>                                                </p>
                             </div>
-                      
-                            
+                        </li>
+                        <li class="media">
+                            <i class="bullet">2</i>
                             <div class="media-body">
-                                <h4>                                           </h4>
+                                <h4> Description Of any dumping area </h4>
                                 <p>                                           </p>
-                            
-                            
-                            
-                                <h4>                                                   </h4>
-                                <p>                                                                                      </p>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <i class="bullet">3</i>
+                            <div class="media-body">
+                                <h4>Write for humans optimize for engines</h4>
+                                <p>Write well structured and understandable articles not just a mix of paragraphs that contain keywords</p>
                             </div>
                         </li>
                     </ul>
@@ -266,7 +251,7 @@
                     <div class="image-container">
                         <div class="video-wrapper">
                             <a class="popup-youtube" href="https://www.youtube.com/watch?v=QcL4-q10XlI" data-effect="fadeIn">
-                                <img class="img-fluid" src="images/video.jpg" alt="alternative">
+                                <img class="img-fluid" src="../static/images/video.jpg" alt="alternative">
                                 <span class="video-play-button">
                                     <span></span>
                                 </span>
@@ -296,7 +281,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="images/israa.jpg" alt="alternative">
+                                        <img class="img-fluid" src="../static/images/israa.jpeg" alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">                                              </div>
@@ -308,7 +293,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="images/Ahmed.jpg" alt="alternative">
+                                        <img class="img-fluid" src="../static/images/Ahmed.jpg" alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">                                              </div>
@@ -320,7 +305,7 @@
                                 <!-- Slide -->
                                 <div class="swiper-slide">
                                     <div class="image-wrapper">
-                                        <img class="img-fluid" src="images/Mohamed_min.jpg" alt="alternative">
+                                        <img class="img-fluid" src="../static/images/Mohamed_min.jpg" alt="alternative">
                                     </div> <!-- end of image-wrapper -->
                                     <div class="text-wrapper">
                                         <div class="testimonial-text">                                              </div>
@@ -356,15 +341,14 @@
         </div> <!-- end of container -->
     </div> <!-- end of slider-2 -->
     <!-- end of authers -->
+    {% block javascript %}	
     <!-- Scripts -->
-    <script src="js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
-    <script src="js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
-    <script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
-    <script src="js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
-    <script src="js/jquery.countdown.min.js"></script> <!-- The Final Countdown plugin for jQuery -->
-    <script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
-    <script src="js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
-    <script src="js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
-    <script src="js/scripts.js"></script> <!-- Custom scripts -->
-</body>
-</html>
+    <script src="../static/js/jquery.min.js"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
+    <script src="../static/js/popper.min.js"></script> <!-- Popper tooltip library for Bootstrap -->
+    <script src="../static/js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+    <script src="../static/js/jquery.easing.min.js"></script> <!-- jQuery Easing for smooth scrolling between anchors -->
+    <script src="../static/js/jquery.countdown.min.js"></script> <!-- The Final Countdown plugin for jQuery -->
+    <script src="../static/js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+    <script src="../static/js/jquery.magnific-popup.js"></script> <!-- Magnific Popup for lightboxes -->
+    <script src="../static/js/validator.min.js"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
+    <script src="../static/js/scripts.js"></script> <!-- Custom scripts -->
