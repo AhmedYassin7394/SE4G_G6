@@ -1,45 +1,44 @@
-from psycopg2 import connect
 import json
 import requests
-import geopandas as gpd
 import pandas as pd
+from psycopg2 import connect
 from sqlalchemy import create_engine
 
 
 cleanup = (
         'DROP TABLE IF EXISTS system_table CASCADE',
-        'DROP TABLE IF EXISTS comments_table',
-        'DROP TABLE IF EXISTS data_table'
+        'DROP TABLE IF EXISTS data_table',
+        'DROP TABLE IF EXISTS post'
         )
 
 commands =(
         """
         CREATE TABLE system_table (
-            user_id SERIAL PRIMARY KEY,
+            userid SERIAL PRIMARY KEY,
             username VARCHAR(255) NOT NULL,
             password VARCHAR(255) NOT NULL,
-            email VARCHAR(255)
-            
+            adress VARCHAR(255)
         )
         """
         ,
-        """
-        CREATE TABLE comments_table (
-            comment_id SERIAL PRIMARY KEY,
-                user_id INTEGER NOT NULL,
+        """ 
+        CREATE TABLE post (
+                post_id SERIAL PRIMARY KEY,
+                author_id INTEGER NOT NULL,
                 created TIMESTAMP DEFAULT NOW(),
                 title VARCHAR(350) NOT NULL,
                 body VARCHAR(500) NOT NULL,
-                FOREIGN KEY (user_id)
-                    REFERENCES system_table (user_id)
+                FOREIGN KEY (author_id)
+                    REFERENCES system_table (userid)
         )
         """
         )
 
 sqlCommands = (
-        'INSERT INTO system_table (username, password, email) VALUES (%s, %s, %s) RETURNING user_id',
-        'INSERT INTO comments_table (title, body, user_id) VALUES (%s, %s, %s)'
-        )        
+        'INSERT INTO system_table (username, password, adress) VALUES (%s, %s, %s) RETURNING userid',
+        'INSERT INTO post (title, body, author_id) VALUES (%s, %s, %s)'
+        )
+
 conn = connect("dbname=postgres user=postgres password=amay123")
 cur = conn.cursor()
 for command in cleanup :
@@ -47,15 +46,21 @@ for command in cleanup :
 for command in commands :
     cur.execute(command)
     print('execute command')
-cur.execute(sqlCommands[0], ('boss', 'amay123','ahmedyassin7394@gmail.com'))
+
+cur.execute(sqlCommands[0], ('boss', 'amay123','sudan'))
 userId = cur.fetchone()[0]
-cur.execute(sqlCommands[1], ('comment', 'hello', userId))
-cur.execute('SELECT * FROM comments_table')
+cur.execute(sqlCommands[1], ('post', 'hello', userId))
+cur.execute('SELECT * FROM post')
 print(cur.fetchall())
+
 
 cur.close()
 conn.commit()
 conn.close()
+
+
+
+
 
 response = requests.get('https://five.epicollect.net/api/export/entries/solid-waste-management-amc')
 raw_data = response.text
