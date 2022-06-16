@@ -7,9 +7,7 @@ Created on Tue Jun  7 17:16:33 2022
 
 import geopandas as gpd
 import folium
-import matplotlib.pyplot as plt
-import tkinter
-from tkinter import Frame
+
 
 gdf = gpd.read_file(r"C:\Users\ALFAFA\Desktop\S4GE g6\MAP\database table.gpkg")
 m = folium.Map(location=[19.124589, 74.724012], zoom_start=15.3, attr="<a href=https://endless-sky.github.io/>Endless Sky</a>")
