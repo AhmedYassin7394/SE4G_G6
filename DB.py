@@ -62,7 +62,7 @@ conn.close()
 
 
 
-response = requests.get('https://five.epicollect.net/api/export/entries/solid-waste-management-amc?per_page200')
+response = requests.get('https://five.epicollect.net/api/export/entries/solid-waste-management-amc?per_page=200')
 raw_data = response.text
 data   = json.loads(raw_data)
 data_df = pd.json_normalize(data['data']['entries'])
